@@ -5,16 +5,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
+    <link rel="shortcut icon" href="./assets/favicom.png">
+    <script src="https://kit.fontawesome.com/06b6c2a36f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <header>
-
-
-
+        <nav class="d-flex navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html">
+                <img src="./assets/loguito.png" alt="Logo" width="5%" height="5%" loading="lazy">
+              </a>
+              <button class="justify-content-end navbar-toggler navbar-dark bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon navbar-dark bg-dark"></span>
+              </button>
+              <div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="Inicio" href="index.html">Inicio</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
     </header>
-    <h1>Proyecto</h1>
+
+    <main>
+        <div class="d-flex align-items-center justify-content-center vh-100">
+            <div class="text-center">
+                <h1 class="fw-bold pb-3">
+                    ¡Bienvenidos!
+                </h1>
+                <h2 class="text-danger text-center pb-2">
+                    Simulador de notas de alumnos
+                </h2>
+                <p class="aling-items-center p-2">
+                    En esta página podra hacer uso de nuestro simulador de carga de alumnos, que además le calculará el promedio de cada alumno. 
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="d-flex flex-row align-items-center">
+            <div class="copyright d-none d-md-block ms-5">
+                <span class="d-flex flex-wrap">
+                    Copyright ©2022 Todos los derechos reservados.
+                </span>
+            </div>
+            <div class="d-flex justify-content-center justify-content-md-end flex-fill">
+                <a class="nav-item me-4" href="./index.html">
+                    <i class="iconos  fa-solid fa-envelope"></i>
+                </a>
+                <a class="nav-item me-4" href="https://www.facebook.com/" target="_blank">
+                    <i class="iconos fa-brands fa-square-facebook"></i>
+                </a>
+                <a class="nav-item me-4" href="https://www.instagram.com/" target="_blank">
+                    <i class="iconos fa-brands fa-square-instagram"></i>
+                </a>
+                <a class="nav-item me-4" href="https://www.linkedin.com/" target="_blank">
+                    <i class="iconos fa-brands fa-linkedin"></i>
+                </a>
+                <a class="nav-item me-4" href="https://twitter.com/" target="_blank">
+                    <i class="iconos fa-brands fa-square-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 </body>
