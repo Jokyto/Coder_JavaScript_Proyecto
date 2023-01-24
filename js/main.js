@@ -44,7 +44,7 @@ function cargar_alumno()
 
         let cant_notas = parseInt(prompt("Ingrese la cantidad de notas que desea cargar."))
         
-        const estudiante = new Alumno(i,alumno,cant_notas)
+        const estudiante = new Alumno(lista_alumnos.length + 1,alumno,cant_notas)
         cargar_nota(estudiante)
         calcular_promedio(estudiante)
         lista_alumnos.push(estudiante)
@@ -55,7 +55,6 @@ function cargar_alumno()
 
 function editar_notas()
 {
-    console.log(lista_alumnos)
 
     let alumno_a_editar = parseInt(prompt("Ingrese el número del alumno a editar su nota."))
 
@@ -65,6 +64,98 @@ function editar_notas()
     calcular_promedio(lista_alumnos[alumno_a_editar - 1])
     
     console.log(lista_alumnos)
+}
+
+function promedio_aprobado(alumno)
+{
+    return alumno.promedio >= 7
+}
+
+function promedio_desaprobado(alumno)
+{
+    return alumno.promedio < 7
+}
+
+function alumnos_aprobados()
+{
+    lista_aprobados = lista_alumnos.filter(promedio_aprobado)
+    console.log(lista_aprobados) 
+}
+
+function alumnos_desaprobados()
+{
+    lista_desaprobados = lista_alumnos.filter(promedio_desaprobado)
+    console.log(lista_desaprobados) 
+}
+
+function buscar_alumno()
+{
+    let alumno_buscado = prompt("Ingrese el nombre del alumno que desee ver.")
+    console.log(lista_alumnos.find(Element => Element.nombre === alumno_buscado))
+}
+
+function remplazar_alumno()
+{
+    let alumno = prompt("Ingrese el nombre del alumno que desea remplazar.")
+    let remplazar_alumno_por = prompt("Ingrese el nombre del nuevo alumno.")
+
+    lista_alumnos.find(Element => Element.nombre === alumno).nombre = remplazar_alumno_por
+    console.log(lista_alumnos)
+}
+
+function mas_opciones()
+{
+    let salir = false
+    while (!salir)
+    {
+        let opcion_ingresada = parseInt(prompt
+            (`Ingrese una de las siguientes opciones:
+                0 - Volver atras
+                1 - Ver alumnos aprobados
+                2 - Ver alumnos desaprobados
+                3 - Buscar alumno
+                4 - Remplazar/Corregir alumno
+            `))
+
+        switch (opcion_ingresada) 
+        {
+            case 0:
+                salir = true
+            break;
+            case 1:
+                if (!lista_alumnos.length) {
+                    alert("No hay alumnos cargados.")
+                }
+                else{
+                    alumnos_aprobados()
+                }
+            break;
+            case 2:
+                if (!lista_alumnos.length) {
+                    alert("No hay alumnos cargados.")
+                }
+                else{
+                    alumnos_desaprobados()
+                } 
+            break    
+            case 3:
+                if (!lista_alumnos.length) {
+                    alert("No hay alumnos cargados.")
+                }
+                else{
+                    buscar_alumno()
+                } 
+            break
+            case 4:
+                if (!lista_alumnos.length) {
+                    alert("No hay alumnos cargados.")
+                }
+                else{
+                    remplazar_alumno()
+                } 
+            break
+        }
+    }
 }
 
 function menu()
@@ -80,6 +171,7 @@ function menu()
                 1 - Ingresar notas y alumnos
                 2 - Cambiar notas
                 3 - Mostrar lista cargada
+                4 - Más opciones de lista
             `))
 
         switch (opcion_ingresada) 
@@ -106,6 +198,9 @@ function menu()
                 else{
                     console.log(lista_alumnos)
                 }
+            break
+            case 4:
+                mas_opciones()
             break
         }
     }
