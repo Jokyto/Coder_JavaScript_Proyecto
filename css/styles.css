@@ -23,6 +23,7 @@ header nav div ul li a{
 /*Main*/
 
 main{
+    height: 100%;
     background-color: #cffbe2;   
 }
 

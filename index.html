@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,43 +11,135 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
+
 <body>
     <header>
         <nav class="d-flex navbar navbar-expand-lg">
             <div class="container-fluid">
-              <a class="navbar-brand" href="index.html">
-                <img src="./assets/loguito.png" alt="Logo" width="5%" height="5%" loading="lazy">
-              </a>
-              <button class="justify-content-end navbar-toggler navbar-dark bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon navbar-dark bg-dark"></span>
-              </button>
-              <div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="Inicio" href="index.html">Inicio</a>
-                  </li>
-                </ul>
-              </div>
+                <a class="navbar-brand" href="index.html">
+                    <img src="./assets/loguito.png" alt="Logo" width="5%" height="5%" loading="lazy">
+                </a>
+                <button class="justify-content-end navbar-toggler navbar-dark bg-dark" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon navbar-dark bg-dark"></span>
+                </button>
+                <div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="Inicio" href="index.html">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </nav>
+        </nav>
     </header>
 
     <main>
-        <div class="d-flex align-items-center justify-content-center vh-100">
-            <div class="text-center">
-                <h1 class="fw-bold pb-3">
-                    ¡Bienvenidos!
-                </h1>
-                <h2 class="text-danger text-center pb-2">
-                    Simulador de notas de alumnos
-                </h2>
-                <p class="aling-items-center p-2">
-                    En esta página podra hacer uso de nuestro simulador de carga de alumnos, que además le calculará el promedio de cada alumno. 
-                </p>
+        <div class="container-fluid">
+            <div class="row d-flex align-items-center justify-content-center" style="height: fit-content;">
+                <div class="col text-center pt-3">
+                    <h1 class="fw-bold pb-3">
+                        ¡Bienvenidos!
+                    </h1>
+                    <h2 class="text-danger text-center pb-2">
+                        Simulador de carga de datos de alumnos
+                    </h2>
+                    <p class="text-center p-2">
+                        En esta página podrá hacer uso de nuestro simulador de carga de alumnos, que además le calculará
+                        el promedio de cada uno.
+                    </p>
+                </div>
+                <hr class="col-12 mt-3" style="color: black;height: 3px;">
+                <!--Cargo los alumnos y los edito-->
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row justify-content-center align-items-center" style="border: 2px solid black;">
+                            <form class="col-6 mb-2">
+                                <label>Ingrese el alumno:</label><br>
+                                <input type="text" id="Alumno_input" style="border: 1px solid black">
+                            </form>
+                            <button id="Cargar_alumno_btn" class="ms-3 col-4 btn btn-primary"
+                                style="height: 50%;">Cargar alumno</button>
+                        </div>
+                    </div>
+                    <div class="col-7 ms-5">
+                        <div class="row justify-content-center align-items-center" style="border: 2px solid black;">
+                            <form class="col-4 mb-2">
+                                <label>Alumno a editar:</label><br>
+                                <input type="text" id="Alumno_editar_input" style="border: 1px solid black">
+                            </form>
+                            <form class="col-4 mb-2">
+                                <label>Nuevo alumno:</label><br>
+                                <input type="text" id="Alumno_editado_input" style="border: 1px solid black">
+                            </form>
+                            <button id="Editar_alumno_btn" class="ms-3 col-3 mt-0 btn btn-primary"
+                                style="height: 50%;">Editar alumno</button>
+                        </div>
+                    </div>
+                </div>
+                <hr class="col-12 mt-3" style="color: black;height: 3px;">
+                <!--cargo nota y muestro o oculto la lista-->    
+                <div class="row">
+                    <div class="col-8">
+                        <div class="row justify-content-center align-items-center" style="border: 2px solid black;">
+                            <form class="col-4 me-4 mb-2 align-items-center">
+                                <label>Alumno a calificar:</label><br>
+                                <input type="text" id="Alumno_nota_input" style="border: 1px solid black">
+                            </form>
+                            <form class="col-4 ms-2 mb-2 align-items-center">
+                                <label>Nueva nota:</label><br>
+                                <input type="text" id="Nota_input" style="border: 1px solid black">
+                            </form>
+                            <button id="Cargar_nota_btn" class="col-2 align-items-center btn btn-primary"
+                                style="height: 50%;">Cargar nota</button>
+                        </div>
+                    </div>
+                    <div class="col-3 ms-5">
+                        <div class="row mt-2 ms-5 justify-content-center">
+                            <button id="Mostrar_lista_btn" class="btn btn-primary" style="width: 60%;">Mostrar lista</button>
+                        </div>
+                    </div>
+                </div>
+                <hr class="col-12 mt-3" style="color: black;height: 3px;">
+                <!--edito-->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row justify-content-center align-items-center" style="border: 2px solid black;">
+                            <form class="col-3 mb-2">
+                                <label>Alumno a recalificar:</label><br>
+                                <input type="text" id="Alumno_recalificar_input" style="border: 1px solid black">
+                            </form>
+                            <form class="col-3 mb-2">
+                                <label>Nota a recalificar:</label><br>
+                                <input type="text" id="Nota_recalificar_input" style="border: 1px solid black">
+                            </form>
+                            <form class="col-3 mb-2">
+                                <label>Nueva nota:</label><br>
+                                <input type="text" id="Nota_recalificada_input" style="border: 1px solid black">
+                            </form>
+                            <button id="Editar_nota_btn" class="col-2 btn btn-primary"
+                                style="height: 50%;">Editar nota</button>
+                        </div>
+                    </div>
+                </div>
+                <hr class="col-12 mt-3" style="color: black;height: 3px;">
+                <!--Lista de alumnos-->
+                <div class="row mb-5 pb-5">
+                    <div class="col-12 mb-0">
+                        <div class="row justify-content-center mb-0">
+                            <h3 class="col-1 text-center mb-0" style="border: 1px solid black;font-size: 100%"> Num. Lista </h3>
+                            <h3 class="col-4 text-center mb-0" style="border: 1px solid black;font-size: 100%"> Alumno </h3>
+                            <div class="col-6 text-center mb-0" style="border: 1px solid black;font-size: 100%"> Notas </div>
+                            <h3 class="col-1 text-center mb-0" style="border: 1px solid black;font-size: 100%"> Promedio </h3>
+                        </div>
+                    </div>
+                    <div id="alumnos" class="col-12 pb-3">
+                    </div>
+                </div>
             </div>
         </div>
     </main>
-
     <footer>
         <div class="d-flex flex-row align-items-center">
             <div class="copyright d-none d-md-block ms-5">
@@ -73,8 +166,8 @@
             </div>
         </div>
     </footer>
-    
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>
