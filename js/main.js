@@ -1,208 +1,59 @@
-// class Alumno{
-//     constructor(numero_de_lista, nombre, cant_notas){
-//         this.numero_de_lista = numero_de_lista,
-//         this.nombre = nombre,
-//         this.cant_notas = cant_notas,
-//         this.promedio = 0
-//         this.notas = []
-//     }
-// }
-// function cargar_nota(estudiante){ 
-//     for (let i = 0; i < estudiante.cant_notas; i++) 
-//     {
-//         let nota = parseInt(prompt("Ingrese la nota."))
-//         estudiante.notas.push(nota)
-//     }    
-// }
-// function calcular_promedio(estudiante)
-// {
-//     let notas_sumadas = 0
-
-//     for (let i = 0; i < estudiante.cant_notas; i++) 
-//     {
-//         notas_sumadas = notas_sumadas + estudiante.notas[i]
-//     }
-
-//     estudiante.promedio = notas_sumadas / estudiante.cant_notas
-// }
-// function cargar_alumno()
-// {
-//     let cant_alumnos = parseInt(prompt("Ingrese la cantidad de alumnos."))
-
-//     for (let i = 1; i <= cant_alumnos; i++)
-//     {
-//         let alumno = prompt("Ingrese el nombre del alumno.")
-
-//         let cant_notas = parseInt(prompt("Ingrese la cantidad de notas que desea cargar."))
-        
-//         const estudiante = new Alumno(lista_alumnos.length + 1,alumno,cant_notas)
-//         cargar_nota(estudiante)
-//         calcular_promedio(estudiante)
-//         lista_alumnos.push(estudiante)
-//     }
-    
-//     console.log(lista_alumnos)
-// }
-// function editar_notas()
-// {
-
-//     let alumno_a_editar = parseInt(prompt("Ingrese el número del alumno a editar su nota."))
-
-//     let nota_a_editar = parseInt(prompt("Escriba con número cual nota desea cambiar."))
-
-//     lista_alumnos[alumno_a_editar - 1].notas[nota_a_editar - 1] = parseInt(prompt("Ingrese la nota que desea colocarle al alumno."))
-//     calcular_promedio(lista_alumnos[alumno_a_editar - 1])
-    
-//     console.log(lista_alumnos)
-// }
-// function promedio_aprobado(alumno)
-// {
-//     return alumno.promedio >= 7
-// }
-// function promedio_desaprobado(alumno)
-// {
-//     return alumno.promedio < 7
-// }
-// function alumnos_aprobados()
-// {
-//     lista_aprobados = lista_alumnos.filter(promedio_aprobado)
-//     console.log(lista_aprobados) 
-// }
-// function alumnos_desaprobados()
-// {
-//     lista_desaprobados = lista_alumnos.filter(promedio_desaprobado)
-//     console.log(lista_desaprobados) 
-// }
-// function buscar_alumno()
-// {
-//     let alumno_buscado = prompt("Ingrese el nombre del alumno que desee ver.")
-//     console.log(lista_alumnos.find(Element => Element.nombre === alumno_buscado))
-// }
-// function remplazar_alumno()
-// {
-//     let alumno = prompt("Ingrese el nombre del alumno que desea remplazar.")
-//     let remplazar_alumno_por = prompt("Ingrese el nombre del nuevo alumno.")
-
-//     lista_alumnos.find(Element => Element.nombre === alumno).nombre = remplazar_alumno_por
-//     console.log(lista_alumnos)
-// }
-// function mas_opciones()
-// {
-//     let salir = false
-//     while (!salir)
-//     {
-//         let opcion_ingresada = parseInt(prompt
-//             (`Ingrese una de las siguientes opciones:
-//                 0 - Volver atras
-//                 1 - Ver alumnos aprobados
-//                 2 - Ver alumnos desaprobados
-//                 3 - Buscar alumno
-//                 4 - Remplazar/Corregir alumno
-//             `))
-
-//         switch (opcion_ingresada) 
-//         {
-//             case 0:
-//                 salir = true
-//             break;
-//             case 1:
-//                 if (!lista_alumnos.length) {
-//                     alert("No hay alumnos cargados.")
-//                 }
-//                 else{
-//                     alumnos_aprobados()
-//                 }
-//             break;
-//             case 2:
-//                 if (!lista_alumnos.length) {
-//                     alert("No hay alumnos cargados.")
-//                 }
-//                 else{
-//                     alumnos_desaprobados()
-//                 } 
-//             break    
-//             case 3:
-//                 if (!lista_alumnos.length) {
-//                     alert("No hay alumnos cargados.")
-//                 }
-//                 else{
-//                     buscar_alumno()
-//                 } 
-//             break
-//             case 4:
-//                 if (!lista_alumnos.length) {
-//                     alert("No hay alumnos cargados.")
-//                 }
-//                 else{
-//                     remplazar_alumno()
-//                 } 
-//             break
-//         }
-//     }
-// }
-// function menu()
-// {
-//     let salir_menu = false
-
-//     while (!salir_menu)
-//     {
-//         let opcion_ingresada = parseInt(prompt
-//             (`Ingrese una de las siguientes opciones:
-//                 0 - Salir del menu
-//                 1 - Ingresar notas y alumnos
-//                 2 - Cambiar notas
-//                 3 - Mostrar lista cargada
-//                 4 - Más opciones de lista
-//             `))
-
-//         switch (opcion_ingresada) 
-//         {
-//             case 0:
-//                 alert("Gracias por venir, vuelva cuando quiera cargar notas!")
-//                 salir_menu = true    
-//             break;
-//             case 1:
-//                 cargar_alumno()
-//             break;
-//             case 2:
-//                 if (!lista_alumnos.length) {
-//                     alert("No hay alumnos cargados.")
-//                 }
-//                 else{
-//                     editar_notas()
-//                 } 
-//             break    
-//             case 3:
-//                 if (!lista_alumnos.length) {
-//                     alert("No hay alumnos cargados.")
-//                 }
-//                 else{
-//                     console.log(lista_alumnos)
-//                 }
-//             break
-//             case 4:
-//                 mas_opciones()
-//             break
-//         }
-//     }
-// }
-// menu()
-
-// ----------------------------------------------------------------------------------------------------------
-// DOM
-
 let lista_alumnos = []
 
-if(localStorage.getItem("lista_mostrada")){
-    lista_mostrada = JSON.parse(localStorage.getItem("lista_mostrada"))
-}
-else{
-    lista_mostrada = false
-}
+let ordenar_promedio_mayor = document.getElementById("Mayor_promedio_btn")
+ordenar_promedio_mayor.addEventListener("click", () =>{
+    ordenar_mayor_promedio(lista_alumnos)
+    ordenar_promedio_mayor.classList.remove("d-block")
+    ordenar_promedio_menor.classList.remove("d-none")
+    ordenar_promedio_mayor.classList.add("d-none")
+    ordenar_promedio_menor.classList.add("d-block")
+    localStorage.setItem("Mayor_promedio", JSON.stringify(true))
+})
 
-if(localStorage.getItem("lista_alumnos")){
-    lista_alumnos = JSON.parse(localStorage.getItem("lista_alumnos"))
-}
+let ordenar_promedio_menor = document.getElementById("Menor_promedio_btn")
+ordenar_promedio_menor.addEventListener("click", () =>{
+    ordenar_menor_promedio(lista_alumnos)
+    ordenar_promedio_menor.classList.remove("d-block")
+    ordenar_promedio_mayor.classList.remove("d-none")
+    ordenar_promedio_menor.classList.add("d-none")
+    ordenar_promedio_mayor.classList.add("d-block")
+    localStorage.setItem("Mayor_promedio", JSON.stringify(false))
+})
+
+let alfabetico_ascendente = document.getElementById("Alfabetico_ascendente_btn")
+alfabetico_ascendente.addEventListener("click", () =>{
+    ordenar_alfabetico_ascendente(lista_alumnos)
+    alfabetico_ascendente.classList.remove("d-block")
+    alfabetico_descendiente.classList.remove("d-none")
+    alfabetico_ascendente.classList.add("d-none")
+    alfabetico_descendiente.classList.add("d-block")
+    localStorage.setItem("Alfabetico_ascendente", JSON.stringify(true))
+})
+
+let alfabetico_descendiente = document.getElementById("Alfabetico_descendiente_btn")
+alfabetico_descendiente.addEventListener("click", () =>{
+    ordenar_alfabetico_descendente(lista_alumnos)
+    alfabetico_descendiente.classList.remove("d-block")
+    alfabetico_ascendente.classList.remove("d-none")
+    alfabetico_descendiente.classList.add("d-none")
+    alfabetico_ascendente.classList.add("d-block")
+    localStorage.setItem("Alfabetico_ascendente", JSON.stringify(false))
+})
+
+localStorage.getItem("lista_alumnos") && (lista_alumnos = JSON.parse(localStorage.getItem("lista_alumnos")))
+
+localStorage.getItem("lista_se_muestra") ? (lista_se_muestra = JSON.parse(localStorage.getItem("lista_se_muestra")), lista_se_muestra && (mostrar_alumnos(lista_alumnos)))
+:
+(lista_se_muestra = false)
+
+localStorage.getItem("Mayor_promedio") && (JSON.parse(localStorage.getItem("Mayor_promedio"))) ? (ordenar_promedio_mayor.classList.remove("d-block"),ordenar_promedio_menor.classList.remove("d-none"),ordenar_promedio_mayor.classList.add("d-none"),ordenar_promedio_menor.classList.add("d-block"))
+:
+(ordenar_promedio_menor.classList.remove("d-block"), ordenar_promedio_mayor.classList.remove("d-none"), ordenar_promedio_menor.classList.add("d-none"), ordenar_promedio_mayor.classList.add("d-block"))
+
+localStorage.getItem("Alfabetico_ascendente") && (JSON.parse(localStorage.getItem("Alfabetico_ascendente"))) ? (alfabetico_ascendente.classList.remove("d-block"),alfabetico_descendiente.classList.remove("d-none"),alfabetico_ascendente.classList.add("d-none"),alfabetico_descendiente.classList.add("d-block"))
+:
+(alfabetico_descendiente.classList.remove("d-block"), alfabetico_ascendente.classList.remove("d-none"), alfabetico_descendiente.classList.add("d-none"), alfabetico_ascendente.classList.add("d-block"))
+
 
 class Alumno{
     constructor(numero_de_lista, nombre){
@@ -213,62 +64,91 @@ class Alumno{
     }
 }
 
-let cargar_alumno_btn = document.getElementById("Cargar_alumno_btn")
-cargar_alumno_btn.addEventListener("click", () =>{
-    cargar_alumno(lista_alumnos)
+let cargar_alumno = document.getElementById("Cargar_alumno_btn")
+cargar_alumno.addEventListener("click", () =>{
+    cargar_alumnos(lista_alumnos)
 })
 
-let editar_alumno_btn = document.getElementById("Editar_alumno_btn")
-editar_alumno_btn.addEventListener("click", () =>{
-    editar_alumno(lista_alumnos)
+let editar_alumno = document.getElementById("Editar_alumno_btn")
+editar_alumno.addEventListener("click", () =>{
+    editar_alumnos(lista_alumnos)
 })
 
-let cargar_nota_btn = document.getElementById("Cargar_nota_btn")
-cargar_nota_btn.addEventListener("click", () =>{
-    cargar_nota(lista_alumnos)
+let cargar_nota = document.getElementById("Cargar_nota_btn")
+cargar_nota.addEventListener("click", () =>{
+    cargar_notas(lista_alumnos)
 })
 
-let editar_nota_btn = document.getElementById("Editar_nota_btn")
-editar_nota_btn.addEventListener("click", () =>{
-    editar_nota(lista_alumnos)
+let editar_nota = document.getElementById("Editar_nota_btn")
+editar_nota.addEventListener("click", () =>{
+    editar_notas(lista_alumnos)
 })
 
-let mostrar_lista_btn = document.getElementById("Mostrar_lista_btn")
-mostrar_lista_btn.addEventListener("click", () =>{
-    if(lista_mostrada){
+let borrar_alumno = document.getElementById("Borrar_alumno_btn")
+borrar_alumno.addEventListener("click", () =>{
+    borrar_alumnos(lista_alumnos)
+})
+
+let mostrar_lista = document.getElementById("Mostrar_lista_btn")
+mostrar_lista.addEventListener("click", () =>{
+    if(lista_se_muestra){
         let alumnos_div = document.getElementById("alumnos")
+        let lista = document.getElementById("lista")
+        lista.classList.add("d-none")
+        lista.classList.remove("d-block")
         alumnos_div.innerHTML = ""
-        lista_mostrada = false
-        localStorage.setItem("lista_mostrada", JSON.stringify("lista_mostrada"))
+
+        lista_se_muestra = false
+        localStorage.setItem("lista_se_muestra", JSON.stringify(lista_se_muestra))
     }
     else{
         mostrar_alumnos(lista_alumnos)
-        lista_mostrada = true
-        localStorage.setItem("lista_mostrada", JSON.stringify("lista_mostrada"))
+        lista_se_muestra = true
+        localStorage.setItem("lista_se_muestra", JSON.stringify(lista_se_muestra))
     }
 })
 
-function cargar_alumno(array){
+
+function cargar_alumnos(array){
     let input_alumno = document.getElementById("Alumno_input")
 
-    const nuevo_alumno = new Alumno(array.length + 1, input_alumno.value)
-    array.push(nuevo_alumno)
-    mostrar_alumnos(array)
-
-    input_alumno.value = ""
+    array.find(Element => Element.nombre.toLowerCase() === input_alumno.value.toLowerCase()) ? 
+    (input_alumno.value = "", Toastify({
+        text: "Ya hay un alumno con ese nombre",
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+      }).showToast())
+      :
+      ( nuevo_alumno = new Alumno(array.length + 1, input_alumno.value),
+        array.push(nuevo_alumno),
+        mostrar_alumnos(array),
+        input_alumno.value = "",
+        Toastify({
+            text: "Se cargo el alumno",
+            className: "info",
+            style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast())
 }
 
 function mostrar_alumnos(array){
     let alumnos_div = document.getElementById("alumnos")
     let nota_alumno = 0;
+    let lista_mostrada = document.getElementById("lista")
+    let alumno_nro = 1;
     alumnos_div.innerHTML = ""
+    lista_mostrada.classList.remove("d-none")
+    lista_mostrada.classList.add("d-block")
 
     for(let alumno of array){
         let nuevo_alumno_div = document.createElement("div")
         nuevo_alumno_div.innerHTML = `
         <div id="${alumno.numero_de_lista}" class="col-12">
             <div class = "row justify-content-center">     
-                <h3 class="col-1 mb-0" style="border: 1px solid black"> Nº ${alumno.numero_de_lista} </h3>
+                <h3 class="col-1 mb-0" style="border: 1px solid black"> Nº ${alumno_nro} </h3>
                 <h3 class="col-4 mb-0" style="border: 1px solid black"> ${alumno.nombre} </h3>
                 <div class="col-6 mb-0" style="border: 1px solid black">
                     <div id="${alumno.numero_de_lista}_notas" class="row">
@@ -279,7 +159,8 @@ function mostrar_alumnos(array){
         </div>
         `
         alumnos_div.appendChild(nuevo_alumno_div)
-        
+
+        //Muestro las notas
         if(alumno.notas.length !== 0) {
 
             let notas_div = document.getElementById(`${alumno.numero_de_lista}_notas`)
@@ -288,13 +169,13 @@ function mostrar_alumnos(array){
                 
                 let nuevas_notas_div = document.createElement("div")
                 nuevas_notas_div.innerHTML = `${nota}`
-                nuevas_notas_div.classList.add("col","justify-content-center","align-items-center")
+                nuevas_notas_div.classList.add("col","text-center")
                 notas_div.appendChild(nuevas_notas_div)
             }
-        
+            
             //Promedio
             let promedio_div = document.getElementById(`${alumno.numero_de_lista}_promedio`)
-            
+
             for(let nota of alumno.notas){
                 nota_alumno += nota
             }
@@ -303,38 +184,64 @@ function mostrar_alumnos(array){
             alumno.promedio = Math.round(alumno.promedio * 10) / 10
 
             promedio_div.textContent = alumno.promedio
-            if(alumno.promedio >= 6.5){
-                promedio_div.classList.remove("text-danger")
-                promedio_div.classList.add("text-success")
-            }
-            else{
-                promedio_div.classList.remove("text-success")
-                promedio_div.classList.add("text-danger")
-            }
+
+            alumno.promedio >= 6.5 ? (promedio_div.classList.remove("text-danger"),promedio_div.classList.add("text-success"))
+            :
+            (promedio_div.classList.remove("text-success"),promedio_div.classList.add("text-danger"))
+
             nota_alumno = 0  
         }
+        alumno_nro++
     }
-    localStorage.setItem("lista_alumnos", JSON.stringify(lista_alumnos))
+    alumno_nro = 1
+    localStorage.setItem("lista_alumnos", JSON.stringify(array))
 }
 
-function editar_alumno(array)
+function editar_alumnos(array)
 {
     let alumno_input = document.getElementById("Alumno_editar_input")
     let nuevo_alumno_input = document.getElementById("Alumno_editado_input")
     
-    if (!array.length ) {
+    if (!array.length) {
         alumno_input.value = ""
         nuevo_alumno_input.value = ""
     }
     else{
-        array.find(Element => Element.nombre === alumno_input.value).nombre = nuevo_alumno_input.value
-        mostrar_alumnos(lista_alumnos)
-        alumno_input.value = ""
-        nuevo_alumno_input.value = ""
+        array.find(Element => Element.nombre === alumno_input.value) ? 
+        (
+            array.find(Element => Element.nombre === alumno_input.value).nombre = nuevo_alumno_input.value,
+            mostrar_alumnos(array),
+
+            alumno_input.value = "",
+            nuevo_alumno_input.value = "",
+
+            Toastify({
+                text: "Se cambio el alumno",
+                className: "info",
+                style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast()
+        ) 
+        :
+        (
+            alumno_input.value = "",
+            nuevo_alumno_input.value = "",
+
+            Toastify({
+                text: "No se encontro el alumno",
+                className: "info",
+                style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast()
+        )
     }
+
+
 }
 
-function cargar_nota(array){
+function cargar_notas(array){
     let alumno_input = document.getElementById("Alumno_nota_input")
     let nota_input = document.getElementById("Nota_input")
 
@@ -350,9 +257,17 @@ function cargar_nota(array){
         alumno_input.value = ""
         nota_input.value = " "
     }
+
+    Toastify({
+        text: "Se cargo la nota",
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+      }).showToast();
 }
 
-function editar_nota(array){
+function editar_notas(array){
 
     let alumno_input = document.getElementById("Alumno_recalificar_input")
     let nota_recalificar_input = document.getElementById("Nota_recalificar_input")
@@ -366,10 +281,93 @@ function editar_nota(array){
 
     else{
         array.find(Element => Element.nombre === alumno_input.value).notas[parseInt(nota_recalificar_input.value) - 1] = parseInt(nota_recalificada_input.value)
-        mostrar_alumnos(lista_alumnos)
+        mostrar_alumnos(array)
 
         alumno_input.value = ""
         nota_recalificar_input.value = ""
         nota_recalificada_input.value = ""
     }
+
+    Toastify({
+        text: "Se edito la nota",
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+      }).showToast();
+}
+
+function borrar_alumnos(array){
+    let borrar_alumno_input = document.getElementById("Borrar_alumno_input")
+
+    array.find(Element => Element.nombre === borrar_alumno_input) ? 
+        (array = array.filter(item => item.nombre.toLowerCase() !== borrar_alumno_input.value.toLowerCase()),
+        mostrar_alumnos(array),
+    
+        borrar_alumno_input.value = "",
+    
+        Toastify({
+            text: "Se borro el alumno",
+            className: "info",
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+          }).showToast()
+        )
+        :
+        (
+            borrar_alumno_input.value = "",
+    
+            Toastify({
+                text: "No se encontro el alumno",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast()
+        )
+
+    
+}
+
+function ordenar_menor_promedio(array){
+    array.sort((primer_alumno, segundo_alumno) => primer_alumno.promedio - segundo_alumno.promedio)
+    mostrar_alumnos(array)
+}
+
+function ordenar_mayor_promedio(array){
+    array.sort((primer_alumno, segundo_alumno) => segundo_alumno.promedio - primer_alumno.promedio)
+    mostrar_alumnos(array)
+}
+
+function ordenar_alfabetico_ascendente(array){
+    array.sort((primer_alumno, segundo_alumno) => {
+        const nombre_primer_alumno = primer_alumno.nombre.toLowerCase();
+        const nombre_segundo_alumno = segundo_alumno.nombre.toLowerCase();
+
+        if(nombre_primer_alumno < nombre_segundo_alumno){
+            return -1
+        }
+        if (nombre_primer_alumno > nombre_segundo_alumno) {
+            return 1
+        }
+        return 0
+    })
+    mostrar_alumnos(array)
+}
+
+function ordenar_alfabetico_descendente(array){
+    array.sort((primer_alumno, segundo_alumno) => {
+        const nombre_primer_alumno = primer_alumno.nombre.toLowerCase();
+        const nombre_segundo_alumno = segundo_alumno.nombre.toLowerCase();
+
+        if(nombre_primer_alumno > nombre_segundo_alumno){
+            return -1
+        }
+        if (nombre_primer_alumno < nombre_segundo_alumno) {
+            return 1
+        }
+        return 0
+    })
+    mostrar_alumnos(array)
 }

@@ -7,8 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <link rel="shortcut icon" href="./assets/favicom.png">
+    <!--Iconos-->
     <script src="https://kit.fontawesome.com/06b6c2a36f.js" crossorigin="anonymous"></script>
+    <!--Bootstrap-->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <!--Toastify-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
@@ -17,24 +21,52 @@
         <nav class="d-flex navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">
-                    <img src="./assets/loguito.png" alt="Logo" width="5%" height="5%" loading="lazy">
+                    <img src="./assets/loguito.png" alt="Logo" width="100%" loading="lazy">
                 </a>
-                <button class="justify-content-end navbar-toggler navbar-dark bg-dark" type="button"
+                <button class="justify-content-start navbar-toggler navbar-dark bg-dark" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon navbar-dark bg-dark"></span>
                 </button>
-                <div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="Inicio" href="index.html">Inicio</a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="justify-content-start collapse navbar-collapse navbar-nav mb-2 mb-lg-0"
+                    id="navbarSupportedContent">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary mt-2 ms-3 me-5" data-bs-toggle="modal"
+                            data-bs-target="#cargar_alumno">
+                            Cargar alumno
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary mt-2 me-5" data-bs-toggle="modal"
+                            data-bs-target="#editar_alumno">
+                            Editar alumno
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary mt-2 me-5" data-bs-toggle="modal"
+                            data-bs-target="#cargar_nota">
+                            Cargar nota
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary mt-2 me-5" data-bs-toggle="modal"
+                            data-bs-target="#editar_nota">
+                            Editar nota
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary mt-2 me-5" data-bs-toggle="modal"
+                            data-bs-target="#borrar_alumno">
+                            Borrar alumno
+                        </button>
+                    </li>
+                </ul>
+                <div class="justify-content-end">
+                    <a class="nav-item nav-link active" aria-current="Inicio" href="index.html">Inicio</a>
+                </div>  
             </div>
         </nav>
     </header>
-
     <main>
         <div class="container-fluid">
             <div class="row d-flex align-items-center justify-content-center" style="height: fit-content;">
@@ -50,94 +82,174 @@
                         el promedio de cada uno.
                     </p>
                 </div>
-                <hr class="col-12 mt-3" style="color: black;height: 3px;">
-                <!--Cargo los alumnos y los edito-->
-                <div class="row">
-                    <div class="col-4">
-                        <div class="row justify-content-center align-items-center" style="border: 2px solid black;">
-                            <form class="col-6 mb-2">
-                                <label>Ingrese el alumno:</label><br>
-                                <input type="text" id="Alumno_input" style="border: 1px solid black">
-                            </form>
-                            <button id="Cargar_alumno_btn" class="ms-3 col-4 btn btn-primary"
-                                style="height: 50%;">Cargar alumno</button>
-                        </div>
-                    </div>
-                    <div class="col-7 ms-5">
-                        <div class="row justify-content-center align-items-center" style="border: 2px solid black;">
-                            <form class="col-4 mb-2">
-                                <label>Alumno a editar:</label><br>
-                                <input type="text" id="Alumno_editar_input" style="border: 1px solid black">
-                            </form>
-                            <form class="col-4 mb-2">
-                                <label>Nuevo alumno:</label><br>
-                                <input type="text" id="Alumno_editado_input" style="border: 1px solid black">
-                            </form>
-                            <button id="Editar_alumno_btn" class="ms-3 col-3 mt-0 btn btn-primary"
-                                style="height: 50%;">Editar alumno</button>
-                        </div>
-                    </div>
-                </div>
-                <hr class="col-12 mt-3" style="color: black;height: 3px;">
-                <!--cargo nota y muestro o oculto la lista-->    
-                <div class="row">
-                    <div class="col-8">
-                        <div class="row justify-content-center align-items-center" style="border: 2px solid black;">
-                            <form class="col-4 me-4 mb-2 align-items-center">
-                                <label>Alumno a calificar:</label><br>
-                                <input type="text" id="Alumno_nota_input" style="border: 1px solid black">
-                            </form>
-                            <form class="col-4 ms-2 mb-2 align-items-center">
-                                <label>Nueva nota:</label><br>
-                                <input type="text" id="Nota_input" style="border: 1px solid black">
-                            </form>
-                            <button id="Cargar_nota_btn" class="col-2 align-items-center btn btn-primary"
-                                style="height: 50%;">Cargar nota</button>
-                        </div>
-                    </div>
-                    <div class="col-3 ms-5">
-                        <div class="row mt-2 ms-5 justify-content-center">
-                            <button id="Mostrar_lista_btn" class="btn btn-primary" style="width: 60%;">Mostrar lista</button>
+                <hr class="row mt-3" style="color: black;height: 3px;">
+                <!--Cargo los alumnos-->
+                <div class="modal" id="cargar_alumno" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Ingrese nombre del alumno</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-12">
+                                    <div class="row justify-content-center align-items-center text-center">
+                                        <label>Nombre:</label><br>
+                                        <input type="text" class="col-8" id="Alumno_input"
+                                            style="border: 1px solid black">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" id="Cargar_alumno_btn" class="btn btn-primary">Guardar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <hr class="col-12 mt-3" style="color: black;height: 3px;">
+                <!--Edito los alumnos-->
+                <div class="modal" id="editar_alumno" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Ingrese nombre del alumno</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row justify-content-center align-items-center text-center">
+                                    <label>Nombre:</label><br>
+                                    <input type="text" class="col-8" id="Alumno_editar_input"
+                                        style="border: 1px solid black">
+                                    <label>Nuevo nombre:</label><br>
+                                    <input type="text" class="col-8" id="Alumno_editado_input"
+                                        style="border: 1px solid black">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" id="Editar_alumno_btn" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--cargo nota-->
+                <div class="modal" id="cargar_nota" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Ingrese la nota del alumno</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row justify-content-center align-items-center text-center">
+                                    <label>Nombre:</label><br>
+                                    <input type="text" class="col-8" id="Alumno_nota_input"
+                                        style="border: 1px solid black">
+                                    <label>Nota:</label><br>
+                                    <input type="text" class="col-8" id="Nota_input" style="border: 1px solid black">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" id="Cargar_nota_btn" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!--edito-->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="row justify-content-center align-items-center" style="border: 2px solid black;">
-                            <form class="col-3 mb-2">
-                                <label>Alumno a recalificar:</label><br>
-                                <input type="text" id="Alumno_recalificar_input" style="border: 1px solid black">
-                            </form>
-                            <form class="col-3 mb-2">
-                                <label>Nota a recalificar:</label><br>
-                                <input type="text" id="Nota_recalificar_input" style="border: 1px solid black">
-                            </form>
-                            <form class="col-3 mb-2">
-                                <label>Nueva nota:</label><br>
-                                <input type="text" id="Nota_recalificada_input" style="border: 1px solid black">
-                            </form>
-                            <button id="Editar_nota_btn" class="col-2 btn btn-primary"
-                                style="height: 50%;">Editar nota</button>
+                <div class="modal" id="editar_nota" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Ingrese la nueva nota del alumno</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row justify-content-center align-items-center text-center">
+                                    <label>Nombre:</label><br>
+                                    <input type="text" class="col-8" id="Alumno_recalificar_input"
+                                        style="border: 1px solid black">
+                                    <label>Número de la nota:</label><br>
+                                    <input type="text" class="col-8" id="Nota_recalificar_input"
+                                        style="border: 1px solid black">
+                                    <label>Nueva nota:</label><br>
+                                    <input type="text" class="col-8" id="Nota_recalificada_input"
+                                        style="border: 1px solid black">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" id="Editar_nota_btn" class="btn btn-primary">Guardar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <hr class="col-12 mt-3" style="color: black;height: 3px;">
-                <!--Lista de alumnos-->
-                <div class="row mb-5 pb-5">
-                    <div class="col-12 mb-0">
-                        <div class="row justify-content-center mb-0">
-                            <h3 class="col-1 text-center mb-0" style="border: 1px solid black;font-size: 100%"> Num. Lista </h3>
-                            <h3 class="col-4 text-center mb-0" style="border: 1px solid black;font-size: 100%"> Alumno </h3>
-                            <div class="col-6 text-center mb-0" style="border: 1px solid black;font-size: 100%"> Notas </div>
-                            <h3 class="col-1 text-center mb-0" style="border: 1px solid black;font-size: 100%"> Promedio </h3>
+                <!--Borrar alumno-->
+                <div class="modal" id="borrar_alumno" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Ingrese el alumno a borrar</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row justify-content-center align-items-center text-center">
+                                    <label>Nombre:</label><br>
+                                    <input type="text" class="col-8" id="Borrar_alumno_input"
+                                        style="border: 1px solid black">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" id="Borrar_alumno_btn" class="btn btn-primary">Guardar</button>
+                            </div>
                         </div>
                     </div>
-                    <div id="alumnos" class="col-12 pb-3">
-                    </div>
+                </div>
+                <!--Boton de lista-->
+                <div class="col-3 mt-2 justify-content-center">
+                    <button id="Mostrar_lista_btn" class="btn btn-primary" style="width: 60%;">Mostrar
+                        lista</button>
                 </div>
             </div>
+            <hr class="row mt-3" style="color: black;height: 3px;">
+            <!--Lista de alumnos-->
+            <div id="lista" class="row p-5 d-none">
+                <div class="col-12 mb-0">
+                    <div class="row justify-content-center mb-0">
+                        <h3 class="col-1 mb-0 align-middle text-center" style="border: 1px solid black; font-size: 150%;"> Nº </h3>
+                        <div class="d-flex col-4 align-items-center text-center" style="border: 1px solid black">
+                            <h3 class="col-11 text-center mb-0"> Alumno
+                            </h3>
+                            <button id="Alfabetico_ascendente_btn" class="col-1 ms-1 btn p-2 btn-outline-dark justify-content-end" style="width: 8%;">
+                                <i class="d-flex fa-solid fa-arrow-down-wide-short" style="font-size: 100%;"></i>
+                            </button>
+                            <button id="Alfabetico_descendiente_btn" class="col-1 ms-1 d-none btn p-2 btn-outline-dark justify-content-end" style="width: 8%;">
+                                <i class="d-flex fa-solid fa-arrow-down-short-wide" style="font-size: 100%;"></i>
+                            </button>
+                        </div>
+                        <h3 class="col-6 text-center mb-0 align-middle" style="border: 1px solid black;font-size: 150%"> Notas
+                        </h3>
+                        <div class="d-flex col-1 align-items-center text-center mb-0 p-0" style="border: 1px solid black">
+                            <h3 class="text-center"style="font-size: 100%"> Promedio</h3>
+                            <button id="Mayor_promedio_btn" class=" btn p-2 btn-outline-dark justify-content-start" style="width: 30%;">
+                                <i class="d-flex fa-solid fa-arrow-down-wide-short" style="font-size: 100%;justify-content: flex-start;"></i>
+                            </button>
+                            <button id="Menor_promedio_btn" class="d-none btn p-2 btn-outline-dark justify-content-start" style="width: 30%;">
+                                <i class="d-flex fa-solid fa-arrow-down-short-wide" style="font-size: 100%;justify-content: flex-start;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="alumnos" class="col-12 pb-3">
+                </div>
+            </div>
+        </div>
         </div>
     </main>
     <footer>
@@ -166,7 +278,10 @@
             </div>
         </div>
     </footer>
+    <!--Bootstrap-->
     <script src="./js/bootstrap.bundle.min.js"></script>
+    <!--Toastify-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="js/main.js"></script>
 </body>
 
