@@ -1,5 +1,19 @@
 let lista_alumnos = []
 
+const cargar_alumnado = async () => {
+    const response = await fetch("alumnos.json")
+    const data = await response.json()
+
+    for(let estudiante of data){
+        let nuevo_alumno = new Alumno(estudiante.nombre)
+        nuevo_alumno.notas = estudiante.notas
+        nuevo_alumno.numero_de_lista = estudiante.numero_de_lista
+        nuevo_alumno.promedio = estudiante.promedio
+        lista_alumnos.push(nuevo_alumno)
+    }
+    localStorage.setItem("lista_alumnos", JSON.stringify(lista_alumnos))
+}
+
 let ordenar_promedio_mayor = document.getElementById("Mayor_promedio_btn")
 ordenar_promedio_mayor.addEventListener("click", () =>{
     ordenar_mayor_promedio(lista_alumnos)
@@ -40,11 +54,38 @@ alfabetico_descendiente.addEventListener("click", () =>{
     localStorage.setItem("Alfabetico_ascendente", JSON.stringify(false))
 })
 
-localStorage.getItem("lista_alumnos") && (lista_alumnos = JSON.parse(localStorage.getItem("lista_alumnos")))
+let ocultar_lista = document.getElementById("Ocultar_lista_btn")
+ocultar_lista.addEventListener("click", () =>{
+    let alumnos_div = document.getElementById("alumnos")
+    let lista = document.getElementById("lista")
+    lista.classList.add("d-none")
+    lista.classList.remove("d-block")
+    ocultar_lista.classList.add("d-none")
+    ocultar_lista.classList.remove("d-block")
+    mostrar_lista.classList.add("d-block")
+    mostrar_lista.classList.remove("d-none")
+    alumnos_div.innerHTML = ""
+    
+    lista_se_muestra = false
+    localStorage.setItem("lista_se_muestra", JSON.stringify(lista_se_muestra))
+})
 
-localStorage.getItem("lista_se_muestra") ? (lista_se_muestra = JSON.parse(localStorage.getItem("lista_se_muestra")), lista_se_muestra && (mostrar_alumnos(lista_alumnos)))
+let mostrar_lista = document.getElementById("Mostrar_lista_btn")
+mostrar_lista.addEventListener("click", () =>{
+    mostrar_alumnos(lista_alumnos)
+    ocultar_lista.classList.add("d-block")
+    ocultar_lista.classList.remove("d-none")
+    mostrar_lista.classList.add("d-none")
+    mostrar_lista.classList.remove("d-block")
+    lista_se_muestra = true
+    localStorage.setItem("lista_se_muestra", JSON.stringify(lista_se_muestra))
+})
+
+localStorage.getItem("lista_alumnos") ? (lista_alumnos = JSON.parse(localStorage.getItem("lista_alumnos"))) : (cargar_alumnado())
+
+localStorage.getItem("lista_se_muestra") && (JSON.parse(localStorage.getItem("lista_se_muestra"))) ? (mostrar_alumnos(lista_alumnos),ocultar_lista.classList.remove("d-none"), ocultar_lista.classList.add("d-block"),mostrar_lista.classList.remove("d-block"),mostrar_lista.classList.add("d-none"))
 :
-(lista_se_muestra = false)
+(ocultar_lista.classList.remove("d-block"),ocultar_lista.classList.add("d-none"), mostrar_lista.classList.remove("d-none"), mostrar_lista.classList.add("d-block"))
 
 localStorage.getItem("Mayor_promedio") && (JSON.parse(localStorage.getItem("Mayor_promedio"))) ? (ordenar_promedio_mayor.classList.remove("d-block"),ordenar_promedio_menor.classList.remove("d-none"),ordenar_promedio_mayor.classList.add("d-none"),ordenar_promedio_menor.classList.add("d-block"))
 :
@@ -56,8 +97,8 @@ localStorage.getItem("Alfabetico_ascendente") && (JSON.parse(localStorage.getIte
 
 
 class Alumno{
-    constructor(numero_de_lista, nombre){
-        this.numero_de_lista = numero_de_lista,
+    constructor(nombre){
+        this.numero_de_lista = 0
         this.nombre = nombre
         this.notas = []
         this.promedio = 0
@@ -86,28 +127,30 @@ editar_nota.addEventListener("click", () =>{
 
 let borrar_alumno = document.getElementById("Borrar_alumno_btn")
 borrar_alumno.addEventListener("click", () =>{
-    borrar_alumnos(lista_alumnos)
+    Swal.fire({
+        title: '¿Esta seguro de borrar el alumno?',
+        text: "No va a poder revertirlo!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, borralo!',
+        cancelButtonText: 'No, no quiero!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+            borrar_alumnos(lista_alumnos)
+            Swal.fire(
+                'Alumno borrado!',
+          )
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          Swal.fire(
+            'Cancelado',
+            'No se ha borrado al alumno!',
+            'error'
+          )
+        }
+      })
 })
-
-let mostrar_lista = document.getElementById("Mostrar_lista_btn")
-mostrar_lista.addEventListener("click", () =>{
-    if(lista_se_muestra){
-        let alumnos_div = document.getElementById("alumnos")
-        let lista = document.getElementById("lista")
-        lista.classList.add("d-none")
-        lista.classList.remove("d-block")
-        alumnos_div.innerHTML = ""
-
-        lista_se_muestra = false
-        localStorage.setItem("lista_se_muestra", JSON.stringify(lista_se_muestra))
-    }
-    else{
-        mostrar_alumnos(lista_alumnos)
-        lista_se_muestra = true
-        localStorage.setItem("lista_se_muestra", JSON.stringify(lista_se_muestra))
-    }
-})
-
 
 function cargar_alumnos(array){
     let input_alumno = document.getElementById("Alumno_input")
@@ -121,7 +164,7 @@ function cargar_alumnos(array){
         }
       }).showToast())
       :
-      ( nuevo_alumno = new Alumno(array.length + 1, input_alumno.value),
+      ( nuevo_alumno = new Alumno(input_alumno.value),
         array.push(nuevo_alumno),
         mostrar_alumnos(array),
         input_alumno.value = "",
@@ -144,6 +187,7 @@ function mostrar_alumnos(array){
     lista_mostrada.classList.add("d-block")
 
     for(let alumno of array){
+        alumno.numero_de_lista = alumno_nro
         let nuevo_alumno_div = document.createElement("div")
         nuevo_alumno_div.innerHTML = `
         <div id="${alumno.numero_de_lista}" class="col-12">
@@ -207,9 +251,9 @@ function editar_alumnos(array)
         nuevo_alumno_input.value = ""
     }
     else{
-        array.find(Element => Element.nombre === alumno_input.value) ? 
+        array.find(Element => Element.nombre.toLowerCase() === alumno_input.value.toLowerCase()) ? 
         (
-            array.find(Element => Element.nombre === alumno_input.value).nombre = nuevo_alumno_input.value,
+            array.find(Element => Element.nombre.toLowerCase() === alumno_input.value.toLowerCase()).nombre = nuevo_alumno_input.value,
             mostrar_alumnos(array),
 
             alumno_input.value = "",
@@ -250,21 +294,37 @@ function cargar_notas(array){
         nota_input.value = ""
     }
     else{
-        array.find(Element => Element.nombre === alumno_input.value).notas.push(parseInt(nota_input.value))
+        array.find(Element => Element.nombre.toLowerCase() === alumno_input.value.toLowerCase()) ? 
+        (
+            array.find(Element => Element.nombre.toLowerCase() === alumno_input.value.toLowerCase()).notas.push(parseInt(nota_input.value)),
         
-        mostrar_alumnos(array)
+            mostrar_alumnos(array),
 
-        alumno_input.value = ""
-        nota_input.value = " "
+            alumno_input.value = "",
+            nota_input.value = " ",
+
+            Toastify({
+                text: "Se cargo la nota",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast()
+        ) 
+        :
+        (
+            alumno_input.value = "",
+            nuevo_alumno_input.value = "",
+
+            Toastify({
+                text: "No se encontro el alumno",
+                className: "info",
+                style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast()
+        )
     }
-
-    Toastify({
-        text: "Se cargo la nota",
-        className: "info",
-        style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
-        }
-      }).showToast();
 }
 
 function editar_notas(array){
@@ -278,41 +338,65 @@ function editar_notas(array){
         nota_recalificar_input.value = ""
         nota_recalificada_input.value = ""
     }
-
     else{
-        array.find(Element => Element.nombre === alumno_input.value).notas[parseInt(nota_recalificar_input.value) - 1] = parseInt(nota_recalificada_input.value)
-        mostrar_alumnos(array)
+        array.find(Element => Element.nombre === alumno_input.value) ? 
+        (
+            array.find(Element => Element.nombre.toLowerCase() === alumno_input.value).notas[parseInt(nota_recalificar_input.value) - 1] ?
+            (
+                array.find(Element => Element.nombre.toLowerCase() === alumno_input.value).notas[parseInt(nota_recalificar_input.value) - 1] = parseInt(nota_recalificada_input.value),
+            mostrar_alumnos(array),
+    
+            alumno_input.value = "",
+            nota_recalificar_input.value = "",
+            nota_recalificada_input.value = "",
 
-        alumno_input.value = ""
-        nota_recalificar_input.value = ""
-        nota_recalificada_input.value = ""
+            Toastify({
+                text: "Se edito la nota",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast()
+            )
+            :
+            (
+                alumno_input.value = "",
+                nota_recalificar_input.value = "",
+                nota_recalificada_input.value = "",
+    
+                Toastify({
+                    text: "No se encontro la nota",
+                    className: "info",
+                    style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast()
+            )
+        ) 
+        :
+        (
+            alumno_input.value = "",
+            nota_recalificar_input.value = "",
+            nota_recalificada_input.value = "",
+
+            Toastify({
+                text: "No se encontro el alumno",
+                className: "info",
+                style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast()
+        )
     }
-
-    Toastify({
-        text: "Se edito la nota",
-        className: "info",
-        style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
-        }
-      }).showToast();
 }
 
 function borrar_alumnos(array){
     let borrar_alumno_input = document.getElementById("Borrar_alumno_input")
 
-    array.find(Element => Element.nombre === borrar_alumno_input) ? 
-        (array = array.filter(item => item.nombre.toLowerCase() !== borrar_alumno_input.value.toLowerCase()),
-        mostrar_alumnos(array),
-    
-        borrar_alumno_input.value = "",
-    
-        Toastify({
-            text: "Se borro el alumno",
-            className: "info",
-            style: {
-              background: "linear-gradient(to right, #00b09b, #96c93d)",
-            }
-          }).showToast()
+    array.find(Element => Element.nombre.toLowerCase() === borrar_alumno_input.value.toLowerCase()) ? 
+        (
+            array = array.filter(item => item.nombre.toLowerCase() !== borrar_alumno_input.value.toLowerCase()),
+            borrar_alumno_input.value = ""
         )
         :
         (
@@ -326,6 +410,7 @@ function borrar_alumnos(array){
                 }
               }).showToast()
         )
+    mostrar_alumnos(array)
 
     
 }
