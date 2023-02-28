@@ -339,11 +339,11 @@ function editar_notas(array){
         nota_recalificada_input.value = ""
     }
     else{
-        array.find(Element => Element.nombre === alumno_input.value) ? 
+        array.find(Element => Element.nombre.toLowerCase() === alumno_input.value.toLowerCase()) ? 
         (
-            array.find(Element => Element.nombre.toLowerCase() === alumno_input.value).notas[parseInt(nota_recalificar_input.value) - 1] ?
+            array.find(Element => Element.nombre.toLowerCase() === alumno_input.value.toLowerCase()).notas[parseInt(nota_recalificar_input.value) - 1] ?
             (
-                array.find(Element => Element.nombre.toLowerCase() === alumno_input.value).notas[parseInt(nota_recalificar_input.value) - 1] = parseInt(nota_recalificada_input.value),
+                array.find(Element => Element.nombre.toLowerCase() === alumno_input.value.toLowerCase()).notas[parseInt(nota_recalificar_input.value) - 1] = parseInt(nota_recalificada_input.value),
             mostrar_alumnos(array),
     
             alumno_input.value = "",
